@@ -8,7 +8,7 @@ using System.Windows;
 using System.Xml.Linq;
 //using Json.NET;
 
-namespace Projet
+namespace Constellations
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
