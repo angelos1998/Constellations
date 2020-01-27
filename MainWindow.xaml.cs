@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Xml.Linq;
-//using Json.NET;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Constellations
 {
@@ -83,6 +90,7 @@ namespace Constellations
         //static string pathtest = "https://www.wikidata.org/wiki/Q3427";
         private static string url = "https://query.wikidata.org/sparql?query=SELECT%20%3F_toile%20%3F_toileLabel%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%3F_toile%20wdt%3AP31%20wd%3AQ523.%0A%7D%0ALIMIT%20100";
         private static readonly HttpClient client = new HttpClient();
+        
 
         private static async Task Main()
         {
@@ -134,7 +142,7 @@ namespace Constellations
             this.DataContext = new VM();
             //this.DataContext = new BackGround();
             //txtbox1.TextWrapping = TextWrapping.Wrap;
-            
+            _ = Main();
 
             List<List<string>> etoiles = new List<List<string>>();
             //byte[] response = client.GetByteArrayAsync(url);

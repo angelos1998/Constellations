@@ -1,0 +1,14 @@
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\bin\Debug\Constellations.exe.config
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\bin\Debug\Constellations.exe
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\bin\Debug\Constellations.pdb
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations.csprojAssemblyReference.cache
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\MainWindow.g.cs
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\App.g.cs
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations_MarkupCompile.cache
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations_MarkupCompile.lref
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\MainWindow.baml
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations.g.resources
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations.Properties.Resources.resources
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations.csproj.GenerateResource.cache
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations.exe
+C:\Users\thebo\Documents\ECE\ING4\C#\Projet\Constellations\Constellations\obj\Debug\Constellations.pdb
