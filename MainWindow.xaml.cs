@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -61,10 +64,10 @@ namespace Constellations
 
     public partial class MainWindow : Window
     {
-        //static string pathtest = "https://www.wikidata.org/wiki/Q3427";
-        private static string url = "https://query.wikidata.org/sparql?query=SELECT%20%3F_toile%20%3F_toileLabel%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%3F_toile%20wdt%3AP31%20wd%3AQ523.%0A%7D%0ALIMIT%20100";
-               
+        private static string etoile = "https://www.wikidata.org/wiki/Q3427";
+        private static string requete = "https://query.wikidata.org/sparql?query=SELECT%20%3F_toile%20%3F_toileLabel%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%3F_toile%20wdt%3AP31%20wd%3AQ523.%0A%7D%0ALIMIT%20100";
 
+        private static string url = requete;
         private static async Task Main()
         {
             // Call asynchronous network methods in a try/catch block to handle exceptions.
@@ -80,7 +83,7 @@ namespace Constellations
                 string responseBody = await _client.GetStringAsync(url);
                 /*
                 o = JObject.Parse(responseBody);
-                Debug.WriteLine("firstname:" + o["id"][0]);
+                Debug.WriteLine("firstname:" + o["_toile"][0]);
                 //*/
                 Console.WriteLine(responseBody);
                 //return responseBody;
@@ -91,19 +94,49 @@ namespace Constellations
                 Console.WriteLine("Message :{0} ", e.Message);
             }
         }
+        private static async Task<List<Model>> BasicCallAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                var content = await client.GetStringAsync(url);
+                try
+                {
+                    return JsonConvert.DeserializeObject<List<Model>>(content);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message : {0} ", e.Message);
+                    return null;
+                }
+                
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = new VM();
-            //this.DataContext = new BackGround();
-            //txtbox1.TextWrapping = TextWrapping.Wrap;
             
-            _ = Main();
-
-            List<List<string>> etoiles = new List<List<string>>();
+            Task<List<Model>> starsData = BasicCallAsync();
+            Console.WriteLine("OK");
+            //*/
+            //_ = Main();
             //byte[] response = client.GetByteArrayAsync(url);
             //Console.WriteLine(Main());
             //Main();
         }
+    }
+
+    internal class Model
+    {
+        public Model(string _toile, string _toileLabel, string uri)
+        {
+            this._toile = _toile;
+            this._toileLabel = _toileLabel;
+            this.uri = uri;
+        }
+        public string _toile;
+        public string _toileLabel;
+        public string uri;
     }
 }
