@@ -1,25 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Recipes
 {
@@ -45,8 +29,7 @@ namespace Recipes
 
         /**
          * Method managing the action of the "Next" button
-         * -> Browse the list forward to find most recently added recipes
-         * -> If it reached the end of the list, request for a new element to add
+         * -> Browse the list forward to find most recently added recipes in the limit of the list's range
          * 
          */
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -60,6 +43,13 @@ namespace Recipes
             this.Refresh(this.desired_id+1);
         }
 
+        /**
+         * Method managing the action of the "New" button
+         * -> Request for a new random recipe to add to the list of recipes
+         * -> Set the focus to the new added list
+         * -> Refresh the content of the window
+         * 
+         */
         private void New_Click(object sender, RoutedEventArgs e)
         {
             ManageAPI.Request();
@@ -83,7 +73,10 @@ namespace Recipes
                 GlutenFree.IsChecked = ManageAPI.recipesList[this.desired_id].Glutenfree;
                 Cheap.IsChecked = ManageAPI.recipesList[this.desired_id].Cheap;
                 VeryPopular.IsChecked = ManageAPI.recipesList[this.desired_id].Verypopular;
-                Instructions.NavigateToString(ManageAPI.recipesList[this.desired_id].Instructions);
+                if(ManageAPI.recipesList[this.desired_id].Instructions != null)
+                {
+                    Instructions.NavigateToString(ManageAPI.recipesList[this.desired_id].Instructions);
+                }
                 Name.DataContext = ManageAPI.recipesList[this.desired_id];
                 Source.DataContext = ManageAPI.recipesList[this.desired_id];
                 cookingTime.Content = "Temps de préparation : " + ManageAPI.recipesList[this.desired_id].ReadyInMinutes;
@@ -91,6 +84,11 @@ namespace Recipes
             }
             
         }
+
+        /**
+         * Initialize the main window
+         * 
+         */
         public MainWindow()
         {
             InitializeComponent();
@@ -100,7 +98,6 @@ namespace Recipes
             this.Refresh(ManageAPI.recipesList.Count);
         }
     }
-}
 
     public static class ManageAPI
     {
@@ -109,7 +106,6 @@ namespace Recipes
         /**
          * Request the spoonacular API to get a random recipe
          * -> It adds a random recipe to the list recipesList
-         * -> It also sets the new desired_id to the end of the list (focus on the new recipe)
          * 
          */
         public static void Request()
@@ -134,6 +130,7 @@ namespace Recipes
             }
             JObject json = JObject.Parse(responseBodyFromRemoteServer);
 
+            // Parsing ingredients from JSON response into a List of Ingredient
             int i = 0;
             string s = "";
             List<Ingredient> ingredients = new List<Ingredient>();
@@ -141,7 +138,7 @@ namespace Recipes
             while (s != null)
             {
                 s = (string)json.SelectToken("recipes[0].extendedIngredients[" + i.ToString() + "].name");
-                if(s != null)
+                if (s != null)
                 {
                     ingredients.Add(
                         new Ingredient()
@@ -172,19 +169,24 @@ namespace Recipes
                 }
             );
         }
-}
+    }
 
+
+    /**
+     * Ingredient Class
+     * Contain some of the fields of the extendedIngredients field of the JSON response from spoonacular API
+     * 
+     */
     public class Ingredient
     {
-        public string Title { get; set; }
-        public string Quantity { get; set; }
+        public string Title { get; set; } = "No Title defined";
+        public string Quantity { get; set; } = "";
     }
 
     /**
         * Recipe Class
         * Contain some of the fields of the response JSON from spoonacular API
     */
-    
     public class Recipe
     {
         public List<Ingredient> Ingredients { get; set; } = null;
@@ -199,3 +201,4 @@ namespace Recipes
         public string SourceUrl { get; set; } = "No URL provided";
         public string Title { get; set; } = "No title provided";
     }
+}
