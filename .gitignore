@@ -1,0 +1,22 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Test results
+TestResulsts/
+
+# Visual Studo 2019 cache/options directory
+.vs/
+
+# Packages
+[Pp]ackages/
+
+# File copied from https://gist.github.com/brazilnut2000/8226958

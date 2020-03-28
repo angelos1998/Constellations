@@ -1,0 +1,75 @@
+﻿<Window x:Class="Recipes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Recipes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="300">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock FontWeight="Bold" TextDecorations="Underline" TextAlignment="Center" Name="Name" FontSize="48" Margin="0,0,0,15">
+                <Run Text="{Binding Title}"/>
+            </TextBlock>
+            <TextBlock FontWeight="Bold" Name="Healthscore" Margin="15,0,0,15">
+                <Run Text="Health score : "/>
+                <Run Text="{Binding HealthScore}"/>
+            </TextBlock>
+            <CheckBox x:Name="Vegetarian" IsHitTestVisible="false" Margin="15,0,0,0">
+                <TextBlock Text="Vegetarian" />
+            </CheckBox>
+            <CheckBox x:Name="Vegan" IsHitTestVisible="false" Margin="15,0,0,0">
+                <TextBlock Text="Vegan" />
+            </CheckBox>
+            <CheckBox x:Name="GlutenFree" IsHitTestVisible="false" Margin="15,0,0,0">
+                <TextBlock Text="Gluten free" />
+            </CheckBox>
+            <CheckBox x:Name="Cheap" IsHitTestVisible="false" Margin="15,0,0,0">
+                <TextBlock Text="Cheap" />
+            </CheckBox>
+            <CheckBox x:Name="VeryPopular" IsHitTestVisible="false" Margin="15,0,0,0">
+                <TextBlock Text="Very Popular" />
+            </CheckBox>
+            <TextBlock TextDecorations="Underline" Margin="10,20,0,10" FontSize="18">
+                <Run Text="Ingredients required :"/>
+            </TextBlock>
+
+            <ItemsControl Name="icIngredients">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="20,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="- "/>
+                                <TextBlock Text="{Binding Quantity}" />
+                                <TextBlock Text=" of "/>
+                                <TextBlock Text="{Binding Title}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Label x:Name="cookingTime" Margin="5,0,0,0"></Label>
+            <TextBlock TextDecorations="Underline" FontSize="18" Margin="10,0,0,0">Instructions :</TextBlock>
+            <WebBrowser Margin="15,0,0,0" Name="Instructions" Height="150   "></WebBrowser>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                <TextBlock>
+                    <Run Text="Source : "/>
+                </TextBlock>
+                <TextBlock Foreground="Blue" TextDecorations="Underline" Name="Source">
+                    <Run Text="{Binding SourceUrl}"/>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Background="Beige" Foreground="Blue" FontWeight="Bold" Click="Previous_Click" Margin="10,0,0,0">Previous</Button>
+                <Button Background="Beige" Foreground="Blue" FontWeight="Bold" Click="Next_Click" Margin="10,0,0,0">Next</Button>
+                <Button Background="Beige" Foreground="Blue" FontWeight="Bold" Click="New_Click" Margin="10,0,0,0">New</Button>
+            </StackPanel>
+            <Label x:Name="page"></Label>
+        </StackPanel>
+    </ScrollViewer>
+
+</Window>
