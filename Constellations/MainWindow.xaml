@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Recipes"
         mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
         Title="MainWindow" Height="500" Width="300">
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
         <StackPanel>
