@@ -2,7 +2,7 @@
 Ce projet C# permet la visualisation de recettes aléatoires provenant de l'API [spoonacular](https://spoonacular.com/food-api).
 
 # Contexte du projet
-Ce projet a été réaliser dans le cadre du cours de c# pour les étudiants de l'[ECE Paris](https://www.ece.fr/ecole-ingenieur/) (Ecole Centrale d'Electronique)
+Ce projet a été réalisé dans le cadre du cours de c# pour les étudiants de l'[ECE Paris](https://www.ece.fr/ecole-ingenieur/) (Ecole Centrale d'Electronique)
 
 # Features
   - Requête à l'API REST spoonacular permettant d'obtenir une recette aléatoire
